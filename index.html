@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LXF0JVD1CD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LXF0JVD1CD');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PDF Merger & Compressor</title>
@@ -66,54 +75,61 @@
     font-weight: 700;
     background: linear-gradient(90deg, #4f46e5, #ef4444);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .help-section {
+  /* NEW How to Use Section Styles */
+  .how-to-use-container {
     background: #f8f9ff;
     border-radius: 8px;
     padding: 15px;
-    max-width: 300px;
+    width: 100%;
+    max-width: 350px; /* Give it a bit more space */
   }
 
-  .help-section h2 {
+  .how-to-use-container summary {
     display: flex;
     align-items: center;
     gap: 8px;
     color: #4f46e5;
-    margin-bottom: 12px;
     font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none; /* Hide default marker */
+  }
+  .how-to-use-container summary::-webkit-details-marker {
+    display: none; /* Hide default marker in Chrome/Safari */
   }
 
-  .help-step {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+  .how-to-use-content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
   }
-
-  .step-number {
-    min-width: 26px;
-    height: 26px;
-    background: #4f46e5;
-    color: white;
-    border-radius: 50%;
+  .how-to-use-content h4 {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-weight: bold;
-    font-size: 14px;
-  }
-
-  .step-content h3 {
-    margin-bottom: 5px;
+    gap: 8px;
     color: #4f46e5;
+    margin-bottom: 10px;
     font-size: 16px;
   }
-
-  .step-content p {
-    color: #4b5563;
+  .how-to-use-content ol {
+    padding-left: 25px;
+    margin-bottom: 15px;
     font-size: 14px;
-    line-height: 1.4;
+    color: #4b5563;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .how-to-use-content ol:last-child {
+      margin-bottom: 0;
+  }
+  .how-to-use-content strong {
+      color: #1e293b;
   }
 
   .app-container {
@@ -450,6 +466,19 @@
     font-size: 15px;
   }
 
+  /* ADDED FOOTER LINK STYLES */
+  footer a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: text-decoration 0.3s;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+
   @media (max-width: 900px) {
     .app-container {
       flex-direction: column;
@@ -460,7 +489,7 @@
       grid-template-columns: 1fr;
     }
     
-    .help-section {
+    .how-to-use-container { /* Updated selector */
       max-width: 100%;
     }
   }
@@ -493,31 +522,28 @@
         <i class="fas fa-file-pdf"></i>
         <h1>PDF Merger & Compressor</h1>
       </div>
-      <div class="help-section">
-        <h2><i class="fas fa-question-circle"></i> How to Use</h2>
-        <div class="help-step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Select PDFs</h3>
-            <p>Choose files to merge or compress</p>
-          </div>
-        </div>
-        <div class="help-step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Process</h3>
-            <p>Click the action button</p>
-          </div>
-        </div>
-        <div class="help-step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Download</h3>
-            <p>Get your processed file</p>
-          </div>
-        </div>
+      <div class="how-to-use-container">
+          <details>
+              <summary><i class="fas fa-question-circle"></i> How to Use This Tool</summary>
+              <div class="how-to-use-content">
+                  <h4><i class="fas fa-object-group"></i> To Merge PDFs:</h4>
+                  <ol>
+                      <li>Select the <strong>"Merge PDFs"</strong> tab.</li>
+                      <li>Upload two or more PDFs using the 'Browse' button or by dragging them into the box.</li>
+                      <li>Click the <strong>"Merge PDFs"</strong> button and wait for the process to complete.</li>
+                      <li>Click the <strong>"Download Merged PDF"</strong> link to save your file.</li>
+                  </ol>
+                  <h4><i class="fas fa-compress-alt"></i> To Compress a PDF:</h4>
+                  <ol>
+                      <li>Select the <strong>"Compress PDF"</strong> tab.</li>
+                      <li>Upload a single PDF file.</li>
+                      <li>Click the <strong>"Compress PDF"</strong> button.</li>
+                      <li>Download your smaller file and check the size savings.</li>
+                  </ol>
+              </div>
+          </details>
       </div>
-    </header>
+      </header>
     
     <div class="app-container">
       <div class="app-section">
@@ -531,7 +557,6 @@
         </div>
         
         <div class="app-card">
-          <!-- Merge PDF Section -->
           <div class="tab-content" id="merge-section">
             <div class="file-area" id="merge-drop-area">
               <i class="fas fa-file-pdf"></i>
@@ -544,8 +569,7 @@
             </div>
             
             <div class="file-info" id="merge-file-info">
-              <!-- Files will be listed here dynamically -->
-            </div>
+              </div>
             
             <div class="progress-container" id="merge-progress-container">
               <div class="progress-bar" id="merge-progress-bar"></div>
@@ -568,7 +592,6 @@
             </div>
           </div>
           
-          <!-- Compress PDF Section -->
           <div class="tab-content" id="compress-section" style="display: none;">
             <div class="file-area" id="compress-drop-area">
               <i class="fas fa-file-pdf"></i>
@@ -581,8 +604,7 @@
             </div>
             
             <div class="file-info" id="compress-file-info">
-              <!-- File will be listed here dynamically -->
-            </div>
+              </div>
             
             <div class="progress-container" id="compress-progress-container">
               <div class="progress-bar" id="compress-progress-bar"></div>
@@ -629,8 +651,13 @@
       </div>
     </div>
     
-    <footer>
+    <footer id="main-footer">
       <p>© 2023 PDF Tools Pro | All processing happens locally in your browser - no server uploads</p>
+      <p>
+        <a href="privacy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms of Use</a> |
+        <a href="contact.html">Contact</a>
+      </p>
     </footer>
   </div>
 
@@ -807,6 +834,8 @@
       if (!compressFileInput.files.length) return;
       
       const file = compressFileInput.files[0];
+      const originalSize = file.size;
+      
       compressFileInfo.innerHTML = `
         <div class="file-item">
           <div class="file-name">
